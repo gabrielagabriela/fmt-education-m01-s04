@@ -11,6 +11,11 @@ public class Main {
         List<String> professor = new ArrayList<>();
         List<String> cursoConcluido = new ArrayList<>();
 
+        Curso curso01 = new Curso();
+        Professor professor01 = new Professor();
+        System.out.println(curso01.notas());
+        System.out.println(professor01.ensinar());
+
         do {
             System.out.println("Menu de opção:");
             System.out.println("(1) Listar curso / professor \n(2) Adicionar \n(3) Remover \n(4) Marcar como concluído \n(5) Listar concluídos \n(0) Sair");
@@ -35,6 +40,8 @@ public class Main {
                 System.out.println("Digite uma opção válida");
             }
         } while (resposta != 0);
+
+
     }
 
     private static void listarCursoEProfessor(List<String> curso, List<String> professor) {
