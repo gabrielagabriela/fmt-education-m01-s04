@@ -9,10 +9,11 @@ public class Main {
         int resposta;
         List<String> curso = new ArrayList<>();
         List<String> professor = new ArrayList<>();
+        List<String> cursoConcluido = new ArrayList<>();
 
         do {
             System.out.println("Menu de opção:");
-            System.out.println("(1) Listar curso / professor \n(2) Adicionar \n(3) Remover \n(0) Sair");
+            System.out.println("(1) Listar curso / professor \n(2) Adicionar \n(3) Remover \n(4) Marcar como concluído \n(5) Listar concluídos \n(0) Sair");
             resposta = scanner.nextInt();
             scanner.nextLine();
             if (resposta == 0) {
@@ -25,6 +26,10 @@ public class Main {
                 int indice = listarPedirIndice(curso, professor,scanner);
                 removerItemLista(indice,  curso,  professor);
                 //System.out.println("Indice do item escolhido: " + indice);
+            } else if(resposta == 4){
+                marcarComoConcluido(curso, professor, cursoConcluido, scanner);
+            } else if(resposta == 5){
+                listarConcluidos(cursoConcluido);
             }
             else {
                 System.out.println("Digite uma opção válida");
@@ -80,14 +85,27 @@ public class Main {
             if(indice == i){
                 curso.remove(i);
                 professor.remove(i);
-                System.out.println("item removido com sucesso!");
             }
         }
     }
     private static void removerItemLista(int indice, List<String> curso, List<String> professor){
         removerItem(indice, curso, professor);
+        System.out.println("item removido com sucesso!");
     }
 
+    private static void marcarComoConcluido(List<String> curso, List<String> professor, List<String> cursoConcluido, Scanner scanner){
+        int escolhido = listarPedirIndice(curso, professor,  scanner);
+        cursoConcluido.add(curso.get(escolhido));
+        System.out.println("Curso incluído na lista de concluídos!");
+        removerItem(escolhido, curso, professor);
+    }
+
+    private static void listarConcluidos(List<String> cursoConcluido){
+        System.out.println("Lista de cursos concluídos");
+        for(String curso: cursoConcluido ){
+            System.out.println(curso);
+        }
+    }
 }
 
 
